@@ -25,8 +25,8 @@
 		26E3CF5B1D38E06E00D705EA /* slider_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF4E1D38E06E00D705EA /* slider_bar.png */; settings = {ASSET_TAGS = (); }; };
 		26E3CF5C1D38E06E00D705EA /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF4F1D38E06E00D705EA /* target.png */; settings = {ASSET_TAGS = (); }; };
 		26E3CF5D1D38E06E00D705EA /* white_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF501D38E06E00D705EA /* white_dot.png */; settings = {ASSET_TAGS = (); }; };
-		26E3CF5F1D38F05600D705EA /* res in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF5E1D38F05600D705EA /* res */; settings = {ASSET_TAGS = (); }; };
 		26E3CF631D38FF3C00D705EA /* arm.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF621D38FF3C00D705EA /* arm.png */; settings = {ASSET_TAGS = (); }; };
+		26EEA4D31D3C14CF00073907 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 26EEA4D21D3C14CF00073907 /* res */; settings = {ASSET_TAGS = (); }; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
@@ -136,8 +136,8 @@
 		26E3CF4E1D38E06E00D705EA /* slider_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_bar.png; sourceTree = "<group>"; };
 		26E3CF4F1D38E06E00D705EA /* target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target.png; sourceTree = "<group>"; };
 		26E3CF501D38E06E00D705EA /* white_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_dot.png; sourceTree = "<group>"; };
-		26E3CF5E1D38F05600D705EA /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		26E3CF621D38FF3C00D705EA /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
+		26EEA4D21D3C14CF00073907 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				26EEA4D21D3C14CF00073907 /* res */,
 				26E3CF621D38FF3C00D705EA /* arm.png */,
-				26E3CF5E1D38F05600D705EA /* res */,
 				26E3CF441D38E06E00D705EA /* arrow_notip.png */,
 				26E3CF451D38E06E00D705EA /* arrow_white.png */,
 				26E3CF461D38E06E00D705EA /* arrow.png */,
@@ -499,6 +499,7 @@
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				26E3CF5B1D38E06E00D705EA /* slider_bar.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				26EEA4D31D3C14CF00073907 /* res in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
@@ -508,7 +509,6 @@
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
-				26E3CF5F1D38F05600D705EA /* res in Resources */,
 				26E3CF5A1D38E06E00D705EA /* silder_progressBar.png in Resources */,
 				26E3CF5C1D38E06E00D705EA /* target.png in Resources */,
 				26E3CF511D38E06E00D705EA /* arrow_notip.png in Resources */,
