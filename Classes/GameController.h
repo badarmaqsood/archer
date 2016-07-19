@@ -12,6 +12,7 @@
 
 #include "cocos2d.h"
 #include "Archer.h"
+#include "Board.h"
 using namespace cocos2d;
 
 
@@ -47,15 +48,24 @@ public:
     Sprite* playerUpperHalf;
     Sprite* playerHand;
     Sprite* arrow;
+    Sprite* touch_start_circle;
+    Sprite* touch_end_circle;
+    Sprite* board;
+    
     
     //physicsBody for arrow body
     PhysicsBody* arrow_body;
+    
+    //physicsBody for board
+    PhysicsBody* board_body;
     
     // for arrow_ direction
     Vec2 arrow_direction;
     
     //for player arm base position
     float player_arm_position_x;
+    
+    
     
     //for arrow base position
     float arrow_position_x;
@@ -71,6 +81,9 @@ public:
     //layer for upper body + arm
     Layer* upper_body_layer;
     
+    //layer for board
+    Layer* board_layer;
+    
     void drawBorder(Node* a_node, Color4F a_color4f);
     
     //for rotation of upper body
@@ -84,6 +97,16 @@ public:
     
     //checking for first touch
     bool bool_first_touch;
+    
+    //speed of board movement
+    float board_speed;
+    
+    
+    //for board movement
+    void moveBoard();
+    
+    //hoarse function for board movement
+    void _moveBoard(float dt);
     
 };
 

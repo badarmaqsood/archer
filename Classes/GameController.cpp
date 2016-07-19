@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include "GameController.h"
+#include "Board.h"
 
 
 
@@ -64,6 +65,8 @@ bool GameController::init()
     //designing background
     loadAssets();
     
+    //moving board
+    moveBoard();
     
     return true;
 }
@@ -145,11 +148,53 @@ void GameController::loadAssets()
     arrow_position_x = arrow->getPosition().x;
     arrow_position_y = arrow->getPosition().y;
    
+    //setting up sprite for touch start touch position
+    touch_start_circle = Sprite::create("white_dot.png");
+    this->addChild(touch_start_circle);
+    touch_start_circle->setVisible(false);
+    
+    //setting up sprite for touch end position
+    touch_end_circle = Sprite::create("white_dot.png");
+    this->addChild(touch_end_circle);
+    touch_end_circle->setVisible(false);
     
     
+    
+    //layer for board
+    board_layer = Layer::create();
+    this->addChild(board_layer);
+    
+    //initializing board instance
+     Board * target=  Board::create();
+    
+    //initializing board sprite
+    board = target->getBoard();
+    board_layer->addChild(board);
+    board->setAnchorPoint(Vec2(0, 0));
+    
+    //positioning board
+    board_layer->setContentSize(Size(board->getContentSize()));
+    board_layer->setPosition(Vec2(visibleSize.width * 0.05, visibleSize.height/2));
+    
+    
+    //scaling board layer
+    board_layer->setScale(0.5);
+    
+    //adding physics body to board
+    board_body = PhysicsBody::createBox(board_layer->getContentSize());
+    board_body->setDynamic(true);
+    board_body->setMass(10000000000000);
+    board_body->setGravityEnable(false);
+    board_body->setContactTestBitmask(1);
+    board_layer->setPhysicsBody(board_body);
 
-   // drawBorder(upper_body_layer, Color4F::WHITE);
-   // drawBorder(player_layer, Color4F::WHITE);
+    
+    
+    
+    
+    
+    drawBorder(board_layer, Color4F::WHITE);
+    drawBorder(board, Color4F::WHITE);
 
     
     // for debugging .... delete it at the end
@@ -185,6 +230,10 @@ bool GameController::onTouchBegan(Touch* touch, Event* event)
     
     resetArmAndArrowPosition();
     
+    //setting start touch cirlcle and making it visible
+    touch_start_circle->setPosition(touch->getStartLocation());
+    touch_start_circle->setVisible(true);
+    
   
     return true;
 }
@@ -194,6 +243,8 @@ bool GameController::onTouchBegan(Touch* touch, Event* event)
 void GameController::onTouchMoved(Touch* touch, Event* event)
 {
     
+    touch_end_circle->setPosition(touch->getLocation());
+    touch_end_circle->setVisible(true);
     
     //for touch start
     float touch_start_position_x = touch->getStartLocation().x;
@@ -238,6 +289,10 @@ void GameController::onTouchMoved(Touch* touch, Event* event)
 bool GameController::onTouchEnded(Touch* touch, Event* event)
 {
     log("onTouchEnded");
+    
+    //hiding the touch circles
+    touch_start_circle->setVisible(false);
+    touch_end_circle->setVisible(false);
     
     
     // deploying physics body to arrow
@@ -295,5 +350,31 @@ void GameController::resetArmAndArrowPosition()
 
     
 }
+
+
+void GameController::moveBoard()
+{
+    //setting board speed
+    board_speed = 3;
+    this->schedule(schedule_selector(GameController::_moveBoard), 0.1);
+    
+}
+
+void GameController::_moveBoard(float dt)
+{
+    
+    float board_current_position_y = board_layer->getPosition().y;
+    if(board_current_position_y >= 155 || board_current_position_y <= 35)
+    {
+        board_speed = board_speed * -1;
+    }
+    
+    MoveBy* move = MoveBy::create(0.1, Vec2(0, board_speed));
+    board_layer->runAction(move);
+    label->setString(std::to_string(board_current_position_y));
+    //board_current_position_y = board_layer->getPosition().y;
+    
+}
+
 
 

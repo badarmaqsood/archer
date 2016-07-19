@@ -27,6 +27,7 @@
 		26E3CF5D1D38E06E00D705EA /* white_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF501D38E06E00D705EA /* white_dot.png */; settings = {ASSET_TAGS = (); }; };
 		26E3CF631D38FF3C00D705EA /* arm.png in Resources */ = {isa = PBXBuildFile; fileRef = 26E3CF621D38FF3C00D705EA /* arm.png */; settings = {ASSET_TAGS = (); }; };
 		26EEA4D31D3C14CF00073907 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 26EEA4D21D3C14CF00073907 /* res */; settings = {ASSET_TAGS = (); }; };
+		26EEA4DB1D3D06CB00073907 /* Board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26EEA4DA1D3D06CB00073907 /* Board.cpp */; settings = {ASSET_TAGS = (); }; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
 		46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 46880B7619C43A67006E1F66 /* CloseNormal.png */; };
@@ -138,6 +139,8 @@
 		26E3CF501D38E06E00D705EA /* white_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_dot.png; sourceTree = "<group>"; };
 		26E3CF621D38FF3C00D705EA /* arm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arm.png; sourceTree = "<group>"; };
 		26EEA4D21D3C14CF00073907 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		26EEA4D91D3D06A900073907 /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
+		26EEA4DA1D3D06CB00073907 /* Board.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Board.cpp; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46880B7619C43A67006E1F66 /* CloseNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseNormal.png; sourceTree = "<group>"; };
 		46880B7719C43A67006E1F66 /* CloseSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseSelected.png; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 				26D1F6201D38CC8E004F1305 /* Archer.cpp */,
 				26E3CF3D1D38DEA800D705EA /* GameController.h */,
 				26E3CF3E1D38DEC400D705EA /* GameController.cpp */,
+				26EEA4D91D3D06A900073907 /* Board.h */,
+				26EEA4DA1D3D06CB00073907 /* Board.cpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -548,6 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26EEA4DB1D3D06CB00073907 /* Board.cpp in Sources */,
 				26D1F6211D38CC8E004F1305 /* Archer.cpp in Sources */,
 				26E3CF3F1D38DEC400D705EA /* GameController.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
