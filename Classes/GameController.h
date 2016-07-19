@@ -35,9 +35,12 @@ public:
     virtual bool init();
     CREATE_FUNC(GameController);
     
+    
     bool onTouchBegan(Touch* touch, Event* event);
     void onTouchMoved(Touch* touch, Event* event);
     bool onTouchEnded(Touch* touch, Event* event);
+    
+    bool onContactBegin(PhysicsContact & contact);
     
     //loading Assets
     void loadAssets();
@@ -51,6 +54,7 @@ public:
     Sprite* touch_start_circle;
     Sprite* touch_end_circle;
     Sprite* board;
+    Sprite* noTipArrow;
     
     
     //physicsBody for arrow body

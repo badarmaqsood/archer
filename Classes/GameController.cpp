@@ -59,7 +59,9 @@ bool GameController::init()
     
     Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(eventListener, this);
     
-    
+    auto physicsContactListener = EventListenerPhysicsContact::create();
+    physicsContactListener->onContactBegin = CC_CALLBACK_1(GameController::onContactBegin, this);
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(physicsContactListener, this);
     
     
     //designing background
@@ -186,15 +188,26 @@ void GameController::loadAssets()
     board_body->setMass(10000000000000);
     board_body->setGravityEnable(false);
     board_body->setContactTestBitmask(1);
+    board_body->setTag(1);
     board_layer->setPhysicsBody(board_body);
-
+    
+    
+    //creating noTipArrow
+    noTipArrow = Sprite::create("arrow_notip.png");
+    board_layer->addChild(noTipArrow);
+    noTipArrow->setPosition(Vec2(board_layer->getContentSize().width, board_layer->getPosition().y/2));
+    noTipArrow->setVisible(false);
+    noTipArrow->setAnchorPoint(Vec2(0, 0.5));
     
     
     
     
     
-    drawBorder(board_layer, Color4F::WHITE);
-    drawBorder(board, Color4F::WHITE);
+    
+    
+    
+    //drawBorder(board_layer, Color4F::WHITE);
+    //drawBorder(board, Color4F::WHITE);
 
     
     // for debugging .... delete it at the end
@@ -228,6 +241,10 @@ bool GameController::onTouchBegan(Touch* touch, Event* event)
     log("onTouchBegan");
     
     
+    //hiding the previous arrow.
+    noTipArrow->setVisible(false);
+    
+    //calling the reset positions function
     resetArmAndArrowPosition();
     
     //setting start touch cirlcle and making it visible
@@ -300,6 +317,7 @@ bool GameController::onTouchEnded(Touch* touch, Event* event)
     arrow_body->setDynamic(true);
     arrow_body->setGravityEnable(true);
     arrow_body->setContactTestBitmask(1);
+    arrow_body->setTag(1);
     
 
     
@@ -355,8 +373,8 @@ void GameController::resetArmAndArrowPosition()
 void GameController::moveBoard()
 {
     //setting board speed
-    board_speed = 3;
-    this->schedule(schedule_selector(GameController::_moveBoard), 0.1);
+    board_speed = 1.2;
+    this->schedule(schedule_selector(GameController::_moveBoard), 1/60);
     
 }
 
@@ -364,16 +382,59 @@ void GameController::_moveBoard(float dt)
 {
     
     float board_current_position_y = board_layer->getPosition().y;
-    if(board_current_position_y >= 155 || board_current_position_y <= 35)
+    if(board_current_position_y >= 155 )
     {
-        board_speed = board_speed * -1;
+        board_speed = -0.5;
     }
     
-    MoveBy* move = MoveBy::create(0.1, Vec2(0, board_speed));
+    if(board_current_position_y <= 35)
+    {
+        board_speed = 0.5;
+    }
+    
+    MoveBy* move = MoveBy::create(1/65, Vec2(0, board_speed));
     board_layer->runAction(move);
-    label->setString(std::to_string(board_current_position_y));
+   // label->setString(std::to_string(board_current_position_y));
+    board_layer->setRotation(0);
+    if(arrow)
+    {
+        
+    }
     //board_current_position_y = board_layer->getPosition().y;
     
+}
+
+bool GameController::onContactBegin(PhysicsContact & contact)
+{
+   if( contact.getShapeA()->getBody()->getNode()->getTag() == contact.getShapeB()->getBody()->getNode()->getTag())
+   {
+       log("onContactBegin");
+       if(arrow->getPhysicsBody())
+       {
+           arrow->getPhysicsBody()->setVelocity(Vec2(0, 0));
+           board_body->setVelocity(Vec2::ZERO);
+           
+       }
+       //upper_body_layer->removeChild(arrow);
+       
+       //transitioning from tip to no-tip arrow
+       arrow->setVisible(false);
+       noTipArrow->setVisible(true);
+       
+       //angle
+       float angle = arrow->getPhysicsBody()->getRotation();
+       noTipArrow->setRotation(angle);
+       
+       //position
+       Vec2 point = contact.getContactData()->points[0];
+       label->setString(std::to_string(point.y));
+       noTipArrow->setPosition(Vec2(noTipArrow->getPosition().x, point.y - (board_layer->getPosition().y)));
+       
+       return true;
+       
+   }
+    
+    return true;
 }
 
 
